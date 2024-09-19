@@ -23,17 +23,17 @@ public class Fachada {
         return "Sistema de gestión personal";
     }
 
-    public String validarCredenciales(String usuario, String passwd) throws Exception {
+    public String validarCredenciales(String usuario, String passwd, String hora) throws Exception {
         String nombreCompleto = "";
 
         System.out.println(passwd);
         
-        UsuarioDTO dto = (new UsuarioDAO()).validarCredenciales(usuario, passwd);
+        UsuarioDTO dto = (new UsuarioDAO()).validarCredenciales(usuario, passwd,hora);
         System.out.println("dto = "+dto);
         if (dto != null) {
             nombreCompleto = dto.getNombreCompleto();
         } else {
-            throw new Exception("No se encontró usuario con esas credenciales");
+            throw new Exception("No se encontró usuario con esas credenciales o la hora es incorrecta");
         }
 
         return nombreCompleto;
